@@ -1,0 +1,108 @@
+<html>
+<head>
+<meta charset='utf-8'> 
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+</head>
+
+<body>
+<div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+<div id="container2" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+
+<script>
+$(function () {
+        $('#container').highcharts({
+            title: {
+                text: '玩家x日留存率',
+                x: -20 //center
+            },
+            subtitle: {
+                text: '真水墨三国玩家x日留存率',
+                x: -20
+            },
+            xAxis: {
+                categories: {{.date}}
+            },
+            yAxis: {
+                title: {
+                    text: '百分比 (%)'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                valueSuffix: '%'
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+            series: [{
+                name: '次日留存',
+                data: {{.d1}}
+            }, {
+                name: '3日留存',
+                data: {{.d3}}
+            }, {
+                name: '7日留存',
+                data: {{.d7}}
+            }, {
+                name: '15日留存',
+                data: {{.d15}}
+            }, {
+                name: '30日留存',
+                data: {{.d30}}
+            }]
+        });
+
+
+		$('#container2').highcharts({
+            title: {
+                text: '玩家上线统计',
+                x: -20 //center
+            },
+            subtitle: {
+                text: '真水墨三国玩家上线统计',
+                x: -20
+            },
+            xAxis: {
+                categories: {{.date}}
+            },
+            yAxis: {
+                title: {
+                    text: '人数'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                valueSuffix: '人'
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+            series: [{
+                name: '总上线人数',
+                data: {{.onlineno}}
+            }, {
+                name: '新增人数',
+                data: {{.newno}}
+            }]
+        });
+    });
+    
+</script>
+</body>
+</html>
